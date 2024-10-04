@@ -1,60 +1,48 @@
-from flask import Flask, render_template, request, jsonify
-from us_visa.constants import APP_HOST, APP_PORT
-from us_visa.pipline.prediction_pipeline import USvisaData, USvisaClassifier
-from us_visa.pipline.training_pipeline import TrainPipeline
+from flask import Flask, render_template, jsonify, request, send_file
+from phising.exception import PhishingException
+from phising.logger import logging as lg
+import os,sys
+from phising.pipline.training_pipeline import TrainPipeline
+from phising.pipline.prediction_pipeline import PhishingData
 
 app = Flask(__name__)
+
 @app.route("/")
-def index():
-    return render_template("index.html")
-
-@app.route("/predict", methods=["GET","POST"])
-def predict():
-    if request.method == "GET":
-        return render_template("usvisa.html")
-    if request.method == "POST":
-        try:
-            data = request.form
-            print(data)
-            usvisa_data = USvisaData(
-                continent=data["continent"],
-                education_of_employee=data["education_of_employee"],
-                has_job_experience=data["has_job_experience"],
-                requires_job_training=data["requires_job_training"],
-                no_of_employees=data["no_of_employees"],
-                region_of_employment=data["region_of_employment"],
-                prevailing_wage=data["prevailing_wage"],
-                unit_of_wage=data["unit_of_wage"],
-                full_time_position=data["full_time_position"],
-                company_age=data["company_age"],
-            )
-
-            usvisa_df = usvisa_data.get_usvisa_input_data_frame()
-            model_predictor = USvisaClassifier()
-            value = model_predictor.predict(dataframe=usvisa_df)[0]
-
-            # Determine approval status
-            status = "Visa Approved" if value == 1 else "Visa Not Approved"
-            result = {"status": status}
-
-            return render_template("usvisa.html", context = result)
-        
+def home():
+    return jsonify("home")
 
 
-
-        except Exception as e:
-            print(e)
-            return render_template("usvisa.html", error=str(e))
-        
-
-@app.route('/train', methods=['GET', 'POST'])
-def train():
-    if request.method == 'POST':
+@app.route("/train")
+def train_route():
+    try:
         train_pipeline = TrainPipeline()
         train_pipeline.run_pipeline()
-        return "Training successful!"
-    else:
-        return "Training Unsuccessful!"
+
+        return "Training Completed."
+
+    except Exception as e:
+        raise PhishingException(e,sys)
+
+@app.route('/predict', methods=['POST', 'GET'])
+def predict():
+    
+    try:
+        if request.method == 'POST':
+            prediction_pipeline = PhishingData(request)
+            prediction_file_detail = prediction_pipeline.run_pipeline()
+
+            lg.info("prediction completed. Downloading prediction file.")
+            return send_file(prediction_file_detail.prediction_file_path,
+                            download_name= prediction_file_detail.prediction_file_name,
+                            as_attachment= True)
+        
+        else:
+            return render_template('prediction.html')
+
+    except Exception as e:
+        raise PhishingException(e,sys)
+    
+
 
 if __name__ == "__main__":
-    app.run(host=APP_HOST, port=APP_PORT)
+    app.run(host="0.0.0.0", port=8080, debug= True)
