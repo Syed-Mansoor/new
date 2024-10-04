@@ -1,54 +1,36 @@
-columns:
-  - case_id: category
-  - continent: category
-  - education_of_employee: category
-  - has_job_experience: category
-  - requires_job_training: category
-  - no_of_employees: int
-  - yr_of_estab: int
-  - region_of_employment: category
-  - prevailing_wage: int
-  - unit_of_wage: category
-  - full_time_position: category
-  - case_status: category
-
-numerical_columns:
-  - no_of_employees
-  - prevailing_wage
-  - yr_of_estab
-
-categorical_columns:
-  - case_id
-  - continent
-  - education_of_employee
-  - has_job_experience
-  - requires_job_training
-  - region_of_employment
-  - unit_of_wage
-  - full_time_position
-  - case_status
-
-drop_columns:
-  - case_id
-  - yr_of_estab
-
-# for data transformation
-num_features:
-  - no_of_employees
-  - prevailing_wage
-  - company_age
-
-or_columns:
-  - has_job_experience
-  - requires_job_training
-  - full_time_position
-  - education_of_employee
-
-oh_columns:
-  - continent
-  - unit_of_wage
-  - region_of_employment
-
-transform_columns:
-  - no_of_employees
-  - company_age
+SampleFileName: phising.csv
+LengthOfDateStampInFile: 8
+LengthOfTimeStampInFile: 6
+NumberofColumns: 31
+ColName:
+  having_IP_Address: INTEGER
+  URL_Length: INTEGER
+  Shortining_Service: INTEGER
+  having_At_Symbol: INTEGER
+  double_slash_redirecting: INTEGER
+  Prefix_Suffix: INTEGER
+  having_Sub_Domain: INTEGER
+  SSLfinal_State: INTEGER
+  Domain_registeration_length: INTEGER
+  Favicon: INTEGER
+  port: INTEGER
+  HTTPS_token: INTEGER
+  Request_URL: INTEGER
+  URL_of_Anchor: INTEGER
+  Links_in_tags: INTEGER
+  SFH: INTEGER
+  Submitting_to_email: INTEGER
+  Abnormal_URL: INTEGER
+  Redirect: INTEGER
+  on_mouseover: INTEGER
+  RightClick: INTEGER
+  popUpWidnow: INTEGER
+  Iframe: INTEGER
+  age_of_domain: INTEGER
+  DNSRecord: INTEGER
+  web_traffic: INTEGER
+  Page_Rank: INTEGER
+  Google_Index: INTEGER
+  Links_pointing_to_page: INTEGER
+  Statistical_report: INTEGER
+  Result: INTEGER
