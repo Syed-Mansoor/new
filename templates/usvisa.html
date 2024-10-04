@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visa Prediction Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Visa Prediction Form</h1>
+        <form action="/predict" method="POST">
+            <div class="mb-3">
+                <label for="continent" class="form-label">Continent</label>
+                <input type="text" name="continent" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="education_of_employee" class="form-label">Education of Employee</label>
+                <input type="text" name="education_of_employee" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="has_job_experience" class="form-label">Has Job Experience</label>
+                <input type="text" name="has_job_experience" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="requires_job_training" class="form-label">Requires Job Training</label>
+                <input type="text" name="requires_job_training" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="no_of_employees" class="form-label">Number of Employees</label>
+                <input type="number" name="no_of_employees" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="company_age" class="form-label">Company Age</label>
+                <input type="number" name="company_age" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="region_of_employment" class="form-label">Region of Employment</label>
+                <input type="text" name="region_of_employment" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="prevailing_wage" class="form-label">Prevailing Wage</label>
+                <input type="number" name="prevailing_wage" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="unit_of_wage" class="form-label">Unit of Wage</label>
+                <input type="text" name="unit_of_wage" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="full_time_position" class="form-label">Full-Time Position</label>
+                <input type="text" name="full_time_position" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Predict</button>
+        </form>
+        
+        {% if result %}
+            <div class="alert alert-success mt-4">
+                <strong>Prediction Result:</strong> {{ result }}
+            </div>
+        {% elif error %}
+            <div class="alert alert-danger mt-4">
+                <strong>Error:</strong> {{ error }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
