@@ -3,16 +3,24 @@ from Diamond.components.data_transformation import DataTransformation
 from Diamond.logger import logging
 from Diamond.exception import DiamondException
 from Diamond.components.model_trainer import ModelTrainer
+from Diamond.components.model_evaluation import ModelEvaluation
 import os
 import sys
 import pandas as pd
 
 class TrainingPipeline:
     def __init__(self):
+        """
+        TrainingPipeline constructor to initialize the data ingestion, data transformation, and model trainer instances
+        Args: None
+        Returns: None
+        Raises: DiamondException
+        """
         try:
             self.data_ingestion = DataIngestion()
             self.data_transformation = DataTransformation()
             self.model_trainer = ModelTrainer()
+            self.model_evaluation = ModelEvaluation()
 
         except Exception as e:
             raise DiamondException(e,sys)
@@ -43,12 +51,35 @@ class TrainingPipeline:
         except Exception as e:
             raise DiamondException(e,sys)
     def initiate_model_trainer(self,train_array, test_array):   
+        """
+        initiate_model_trainer method will start the model training process
+        Args: train_array, test_array
+        Returns: None
+        Raises: DiamondException
+        """
         try:
             return self.model_trainer.initiate_model_trainer(train_array=train_array,test_array=test_array)
         
         except Exception as e:
             raise DiamondException(e,sys)
+        
+    def initiate_model_evaluation(self, train_array, test_array):
+        """
+        initiate_model_evaluation method will start the model evaluation process
+        Args: train_array, test_array
+        Returns: None
+        Raises: DiamondException
+        """
+        try:
+            return self.model_evaluation.initiate_model_evaluation(train_array=train_array, test_array=test_array)
+        except Exception as e:
+            raise DiamondException(e,sys)
     def run_pipeline(self):
+        """
+        run_pipeline method will start the entire pipeline from data ingestion to model evaluation
+        Returns: None
+        Raises: DiamondException
+        """
         try:
         # Step 1: Data Ingestion
             logging.info('Pipeline has been started')
@@ -65,6 +96,11 @@ class TrainingPipeline:
             logging.info('Model Training Initiated')
             self.initiate_model_trainer(train_array=train_arr, test_array=test_arr)
             logging.info('Model Training Completed')
+            
+            # Step 4: Model Evaluation
+            logging.info('Model Evaluation Initiated')
+            self.initiate_model_evaluation(train_array=train_arr, test_array=test_arr)
+            logging.info('Model Evaluation Completed')
     
             
             logging.info('Data transformation completed')
