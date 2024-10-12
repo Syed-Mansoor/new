@@ -1,3 +1,4 @@
 .Diamond/
 /new\notebook\catboost_info
 logs/
+artifacts/
