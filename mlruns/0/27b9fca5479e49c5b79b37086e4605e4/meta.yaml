@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/new/mlruns/0/27b9fca5479e49c5b79b37086e4605e4/artifacts
+end_time: 1728749130961
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 27b9fca5479e49c5b79b37086e4605e4
+run_name: overjoyed-cat-536
+run_uuid: 27b9fca5479e49c5b79b37086e4605e4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728749097504
+status: 3
+tags: []
+user_id: HP
