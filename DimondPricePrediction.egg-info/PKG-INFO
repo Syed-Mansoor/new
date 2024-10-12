@@ -1,0 +1,8 @@
+Metadata-Version: 2.1
+Name: DimondPricePrediction
+Version: 0.0.1
+Author: syed mansoor
+Author-email: saeedmansoor56@gmail.com
+Requires-Dist: scikit-learn
+Requires-Dist: pandas
+Requires-Dist: numpy
