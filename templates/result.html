@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diamond Price Result</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            background: linear-gradient(135deg, #e0f7fa, #b2ebf2); /* Gradient background */
+            color: #343a40;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        h1 {
+            color: #007bff;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+        }
+
+        .result {
+            font-size: 2.5em; /* Increased font size for emphasis */
+            margin-top: 20px;
+            padding: 20px;
+            border: 3px solid #007bff; /* Blue border */
+            border-radius: 10px;
+            background-color: #ffffff; /* White background for the result box */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow for depth */
+            transition: transform 0.3s; /* Smooth scaling effect */
+        }
+
+        .result:hover {
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+
+        .footer {
+            margin-top: 50px;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .social-icons {
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #007bff;
+            font-size: 1.5em;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #0056b3; /* Darker shade on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>The Diamond Price Will Be</h1>
+    <div class="result">${{ final_result }}</div>
+    
+    <div class="footer">
+        <p>&copy; 2024 Syed Mansoor. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/syed_mansoor_001" target="_blank">📷</a> <!-- Instagram icon -->
+            <a href="https://github.com/Syed-Mansoor" target="_blank">🐱</a> <!-- GitHub icon -->
+            <a href="https://www.linkedin.com/in/syed-mansoor-88404a1b0/" target="_blank">🔗</a> <!-- LinkedIn icon -->
+        </div>
+    </div>
+</body>
+</html>
